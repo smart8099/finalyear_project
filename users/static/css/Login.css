@@ -1,0 +1,94 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #03478D;
+    padding: 50px 20px;
+    width: 370px;
+    flex-direction: column;
+   margin: 60px auto;
+   border-radius: 20px;
+}
+
+.login h4{
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: -35px;
+}
+.form{
+    display: flex;
+ flex-direction: column;
+ margin-left: -30px;
+}
+.email > input, .password > input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 20px;
+    background: #f8f8f8;
+    border: 1.5px solid #03478D;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 5px;
+}
+.email > label, .password > label{
+   margin-bottom: -2px;
+}
+.email{
+    margin-bottom: 20px;
+
+}
+.rememberMe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+.loginBtn{
+    width: 100%;
+    background-color: #03478D;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.forget{
+    display: flex;
+   margin-top: 10px;
+   gap: 30px;
+   align-items: center;
+
+}
+.forget p{
+margin-left: auto;
+color:#686868;
+cursor: pointer;
+font-size: 12px;
+margin-top: -15px;
+}
+
+.forget p:hover{
+    color: #03478D;
+}
+
+@media only screen and (max-width: 425px){
+    .login{
+        width: 280px;
+        align-items: center;
+    }
+
+}
+@media only screen and (max-width: 375px) {
+    .login{
+        width: 220px;
+    }
+
+    .forget label, p{
+        font-size: 12px;
+    }
+
+}

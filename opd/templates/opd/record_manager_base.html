@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Record Manager
+{% endblock %}
+{% block content %}
+<div class="mt-3"> <!-- Add margin-top here to create distance from navbar -->
+    <ul class="nav nav-tabs custom-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'add_patient' %} active {% endif %}"  href="{% url 'add_patient' %}">Add New Patient</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'patient_list' %} active {% endif %}" href="{% url 'patient_list' %}">View Patient Records</a>
+        </li>
+
+            <!-- Placeholder for Edit Patient Records tab -->
+        <li class="nav-item" id="editPatientTabPlaceholder"></li>
+    </ul>
+
+
+    <!-- Content Area -->
+    <div class="container">
+        {% block record_base %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}

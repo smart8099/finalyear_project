@@ -1,0 +1,750 @@
+{% extends 'analytics/base.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom_styles.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-custom pb-6">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-center py-4">
+                    <div class="col-lg-6 col-7">
+                        <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Default</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                </div>
+                <!-- Card stats -->
+                <div class="row">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Total Number of
+                                            Patients</h5>
+                                        <span class="h2 font-weight-bold mb-0">350,897</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Number of Females</h5>
+                                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Number of Males</h5>
+                                        <span class="h2 font-weight-bold mb-0">924</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">PATIENTS WHO ARE
+                                            STUDENT</h5>
+                                        <span class="h2 font-weight-bold mb-0">200</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">PATIENTS WHO ARE
+                                            STAFF</h5>
+                                        <span class="h2 font-weight-bold mb-0">100</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">OTHER (STAFF
+                                            DEPENDANTS)</h5>
+                                        <span class="h2 font-weight-bold mb-0">150</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card bg-default">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
+                                <h5 class="h3 text-white mb-0">Sales value</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="bar-chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="patient_typeBarChart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">Population BreakDown</h6>
+                                <h5 class="h3 mb-0">Male/Female Ratio</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="bar-chart">
+                            <canvas id="malefemaleRatioBarChart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <h2 class="text-center">OPD/Lab Analysis</h2>
+        <hr/>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card bg-default">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <ul class="nav nav-pills justify-content-end">
+                                    <li class="nav-item mr-2 mr-md-0 chart-toggle" data-toggle="chart"
+                                    >
+                                        <a href="#" class="nav-link py-2 px-3 opd_lab_counts active" data-toggle="tab">
+                                            <span class="d-none d-md-block">Day</span>
+{#                                            <span class="d-md-none">D</span>#}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item chart-toggle" data-toggle="chart">
+                                        <a href="#" class="nav-link py-2 px-3 opd_lab_counts" data-toggle="tab">
+                                            <span class="d-none d-md-block">Week</span>
+{#                                            <span class="d-md-none">W</span>#}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mr-2 mr-md-0 chart-toggle" data-toggle="chart"
+                                    >
+                                        <a href="#" class="nav-link py-2 px-3 opd_lab_counts" data-toggle="tab">
+                                            <span class="d-none d-md-block">Month</span>
+{#                                            <span class="d-md-none">M</span>#}
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item chart-toggle" data-toggle="chart">
+                                        <a href="#" class="nav-link py-2 px-3 opd_lab_counts" data-toggle="tab">
+                                            <span class="d-none d-md-block">Year</span>
+{#                                            <span class="d-md-none">Y</span>#}
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div id="opd-visits-card" class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">OPD Visits</h5>
+                                                <span class="h2 font-weight-bold mb-0">100</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                                    <i class="fa-solid fa-hashtag"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-md-6">
+                                <div id="lab-visits-card" class="card card-stats">
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Lab Visits</h5>
+                                                <span class="h2 font-weight-bold mb-0">50</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                                    <i class="fa-solid fa-hashtag"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <ul class="nav nav-pills justify-content-end">
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="bar-chart"
+
+                                            >
+                                                <a href="#" class="nav-link py-2 px-3 active" id="popularlabDayBtn"
+                                                   data-toggle="tab">
+                                                    <span class="d-none d-md-block">Day</span>
+                                                    <span class="d-md-none">D</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" data-toggle="bar-chart">
+                                                <a href="#" class="nav-link py-2 px-3" id="popularlabWeekBtn"
+                                                   data-toggle="tab">
+                                                    <span class="d-none d-md-block">Week</span>
+                                                    <span class="d-md-none">W</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="bar-chart"
+
+                                            >
+                                                <a href="#" class="nav-link py-2 px-3" id="popularlabMonthBtn"
+                                                   data-toggle="tab">
+                                                    <span class="d-none d-md-block">Month</span>
+                                                    <span class="d-md-none">M</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item" data-toggle="bar-chart"
+                                            >
+                                                <a href="#" class="nav-link py-2 px-3" id="popularlabYearBtn"
+                                                   data-toggle="tab">
+                                                    <span class="d-none d-md-block">Year</span>
+                                                    <span class="d-md-none">Y</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">Medical Lab Conducted</h6>
+                                <h5 class="h3 mb-0">Most Popular Tests Conducted</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="bar-chart">
+                            <canvas id="popularLabsConducted" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+        <h2 class="text-center">Disease Analysis</h2>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card bg-default">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Popular Diseases Recorded</h6>
+                                <h5 class="h3 text-white mb-0">Prevalent diseases</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="chart">
+                            <!-- Chart wrapper -->
+                            <canvas id="prevalentDiseasesBarChart" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <ul class="nav nav-pills justify-content-end">
+                                            <li class="nav-item mr-2 mr-md-0" data-toggle="bar-chart"
+                                            >
+                                                <a href="#" class="nav-link py-2 px-3 active" id="most_popularMonthBtn"
+                                                   data-toggle="tab">
+                                                    <span class="d-none d-md-block">Month</span>
+                                                    <span class="d-md-none">M</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" data-toggle="bar-chart">
+                                                <a href="#" class="nav-link py-2 px-3" id="most_popularYearBtn"
+                                                   data-toggle="tab">
+                                                    <span class="d-none d-md-block">Year</span>
+                                                    <span class="d-md-none">Y</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">Diseases Trend</h6>
+                                <h5 class="h3 mb-0">Most Popular Diseases Recorded</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Chart -->
+                        <div class="bar-chart">
+                            <canvas id="mostPopularDiseases" class="chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {#    <script src="/static/js/chart.js/dist/Chart.min.js"></script>#}
+    {#    <script src="/static/js/chart.js/dist/Chart.extension.js"></script>#}
+    <script>
+        var ctx = document.getElementById('malefemaleRatioBarChart').getContext('2d');
+        var patient_type_ctx = document.getElementById('patient_typeBarChart').getContext('2d');
+        var prevalent_diseases_ctx = document.getElementById('prevalentDiseasesBarChart').getContext('2d');
+        var most_popular_diseases_ctx = document.getElementById('mostPopularDiseases').getContext('2d');
+        var popularLabsConductedctx = document.getElementById('popularLabsConducted').getContext('2d');
+        var mostpopularmonthButton = document.getElementById('most_popularMonthBtn');
+        var mostpopularyearButton = document.getElementById('most_popularYearBtn');
+
+        //most popular lab buttons
+        var popularlabDayButton = document.getElementById('popularlabDayBtn');
+        var popularlabWeekButton = document.getElementById('popularlabWeekBtn');
+        var popularlabMonthButton = document.getElementById('popularlabMonthBtn');
+        var popularlabYearButton = document.getElementById('popularlabYearBtn');
+
+        //data for popular lab
+        var popularlabdayData = [23, 12, 10, 34, 29];
+        var popularlabweekData = [90, 50, 80, 45, 95];
+        var popularlabmonthData = [100, 92, 203, 160, 179];
+        var popularlabyearData = [500, 490, 450, 550, 700];
+
+
+        //most popular disease data
+        var mostpopulardiseasemonthlyData = [570, 200, 100, 150, 20];
+        var mostpopulardiseasemyearlyData = [1200, 500, 300, 400, 80];
+
+        {#// Initialize the chart with the default data (e.g., monthlyData)#}
+        var mostPopularDiasesBarChart = new Chart(most_popular_diseases_ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Malaria', 'Cholera', 'Diarrhea', 'Menstrual Pain', 'STIs(HIV/Gonorrhea)'],
+                datasets: [
+                    {
+                        label: 'Monthly Recorded Most Popular Diseases',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        data: mostpopulardiseasemonthlyData, // Start with monthly data
+                    },
+                ],
+            },
+            options: prevalentDiseasesOptions,
+        });
+
+        {#// Initialize the chart with the default data (e.g., monthlyData)#}
+        var mostPopularLabBarChart = new Chart(popularLabsConductedctx, {
+            type: 'bar',
+            data: {
+                labels: ['Full Blood Count', 'Glycated Haemoglobin (HbA1c)', 'Lipid/Cholesterol test', 'Liver function test', 'Thyroid function test'],
+                datasets: [
+                    {
+                        label: 'Popular labs conducted Day/Week/Month/Year',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        data: popularlabdayData, // Start with monthly data
+                    },
+                ],
+            },
+            options: popularLabsConductedOptions,
+        });
+
+        mostpopularmonthButton.addEventListener('click', function () {
+
+            // Update the chart data with monthly data
+            mostPopularDiasesBarChart.data.datasets[0].data = mostpopulardiseasemonthlyData;
+            mostPopularDiasesBarChart.update(); // Update the chart
+        });
+
+        mostpopularyearButton.addEventListener('click', function () {
+
+            // Update the chart data with yearly data
+            mostPopularDiasesBarChart.data.datasets[0].data = mostpopulardiseasemyearlyData;
+            mostPopularDiasesBarChart.update(); // Update the chart
+        });
+
+
+        /*****************/
+        //add event handlers for popular lab btns
+        popularlabDayButton.addEventListener('click', function () {
+            mostPopularLabBarChart.data.datasets[0].data = popularlabdayData;
+            mostPopularLabBarChart.update(); // Update the chart
+        });
+
+        popularlabMonthButton.addEventListener('click', function () {
+            console.log('month clicked')
+            mostPopularLabBarChart.data.datasets[0].data = popularlabmonthData;
+            mostPopularLabBarChart.update(); // Update the chart
+        });
+        popularlabWeekButton.addEventListener('click', function () {
+            mostPopularLabBarChart.data.datasets[0].data = popularlabweekData;
+            mostPopularLabBarChart.update(); // Update the chart
+        });
+
+        popularlabYearButton.addEventListener('click', function () {
+            mostPopularDiasesBarChart.data.datasets[0].data = popularlabyearData;
+            mostPopularLabBarChart.update(); // Update the chart
+        });
+
+
+        // Define the data for the chart
+        var male_female_barchart_data = {
+            labels: ['Male', 'Female'],
+            datasets: [
+                {
+                    label: 'Count of Male/Female Patients',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: [250, 580],
+                },
+            ],
+        };
+
+        var patient_type_barchart_data = {
+            labels: ['Student', 'Staff', 'Other'],
+            datasets: [
+                {
+                    label: 'Count of Student/Staff/Other Patient',
+                    backgroundColor: 'smokewhite',
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    data: [600, 200, 100],
+                },
+            ],
+        };
+
+        var prevalent_diseases_barchart_data = {
+            labels: ['Malaria', 'Cholera', 'Diarrhea'],
+            datasets: [
+                {
+                    label: 'Prevalent Diseases Recorded',
+                    backgroundColor: 'smokewhite',
+                    borderColor: 'white',
+                    borderWidth: 1,
+                    data: [600, 200, 100],
+                },
+            ],
+        };
+
+        var most_popular_diseases_barchart_data = {
+            labels: ['Malaria', 'Cholera', 'Diarrhea', 'Menstrual Pain', 'STIs(HIV/Gonorrhea)'],
+            datasets: [
+                {
+                    label: 'Monthly Recorded Most Popular Diseases',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: [570, 200, 100, 150, 20],
+                },
+            ],
+        };
+        // Configure chart options
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                },
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        };
+
+        // Create the bar chart
+        var maleFemaleBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: male_female_barchart_data,
+            options: options,
+        });
+
+        var patientTypeBarChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'white',  // Color of x-axis labels
+                    },
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'white',  // Color of x-axis labels
+                    },
+
+                },
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',  // Color of legend labels
+                    },
+                },
+            },
+        };
+
+        var patientTypeBarChart = new Chart(patient_type_ctx, {
+            type: 'bar',
+            data: patient_type_barchart_data,
+            options: patientTypeBarChartOptions,
+        })
+
+
+        var popularLabsConductedData = {
+            labels: ['Full Blood Count', 'Glycated Haemoglobin (HbA1c)', 'Lipid/Cholesterol test', 'Liver function test', 'Thyroid function test'],
+            datasets: [
+                {
+                    label: 'Most conducted Test',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: [90, 50, 80, 45, 95], // Adjust the data values here for Male and Female
+                },
+            ],
+        };
+
+
+        var popularLabsConductedOptions = {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                },
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        };
+
+        var prevalentDiseasesOptions = {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                },
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        };
+
+
+        var prevalentDiasesBarChart = new Chart(prevalent_diseases_ctx, {
+            type: 'bar', // Use 'horizontalBar' type for horizontal bars
+            data: prevalent_diseases_barchart_data,
+            options: prevalentDiseasesOptions,
+        });
+
+        $(document).ready(function () {
+            // Default data for the cards
+            var opdVisitsData = {
+                title: "OPD Visits",
+                count: 350897,
+            };
+
+            var labVisitsData = {
+                title: "Lab Visits",
+                count: 350897,
+            };
+
+            // Function to update the card content
+            function updateCards(opd_data,lab_data) {
+                $('#opd-visits-card .card-title').text(opd_data.title);
+                $('#opd-visits-card .h2').text(opd_data.count);
+
+                $('#lab-visits-card .card-title').text(lab_data.title);
+                $('#lab-visits-card .h2').text(lab_data.count);
+            }
+
+            // Event listener for buttons
+            $('.opd_lab_counts').click(function (e) {
+                console.log('this was clicked')
+                e.preventDefault();
+
+                // Update the card data based on the button clicked
+                var buttonText = $(this).text().trim();;
+                {#var buttonText = $('.opd_lab_counts .d-none').text();#}
+                console.log(buttonText)
+
+
+                if (buttonText === "Day") {
+                    opdVisitsData.count = 100; // Update with your day data
+                    labVisitsData.count = 50; // Update with your day data
+                } else if (buttonText === "Week") {
+                    opdVisitsData.count = 500; // Update with your week data
+                    labVisitsData.count = 250; // Update with your week data
+                } else if (buttonText === "Month") {
+                    opdVisitsData.count = 2000; // Update with your month data
+                    labVisitsData.count = 1000; // Update with your month data
+                } else if (buttonText === "Year") {
+                    opdVisitsData.count = 8000; // Update with your year data
+                    labVisitsData.count = 4000; // Update with your year data
+                }
+
+                // Update the card content
+                updateCards(opdVisitsData,labVisitsData);
+            });
+
+            // Initial card data
+            updateCards(opdVisitsData);
+        });
+
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,191 @@
+{% extends "dashboard/dashboard_base.html" %}
+{% load static %}
+{% block title %}
+    Diagnose Patient
+{% endblock %}
+
+{% block app_navigation %}
+    {% include "physician/sidenav.html" %}  {# Include navigation for app2 #}
+{% endblock app_navigation %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <h2 class="text-center">Patient Vitals</h2>
+    <table class="table table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th>Temperature</th>
+            <th>Blood Pressure</th>
+            <th>Pulse Rate</th>
+            <th>Weight</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ patient_visit.temperature }}</td>
+            <td>{{ patient_visit.blood_pressure }}</td>
+            <td>{{ patient_visit.pulse_rate }}</td>
+            <td>{{ patient_visit.weight }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <div class="container">
+        <form id="observationForm" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.symptoms|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.diagnosis|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.prescription|as_crispy_field }}
+                </div>
+                <div class="col-md-6 mt-4 ">
+                    <button type="submit" class="btn btn-primary" id="showConfirmationModalBtn">Submit Observation
+                    </button>
+                    <button type="button" class="btn btn-primary" id="requestLabTestBtn"
+                            data-patient-visit-id="{{ patient_visit.patient.id }}">Request Lab
+                    </button>
+                    <button type="button" class="btn btn-primary">Drug Prescription</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to submit your observation?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="submitObservationBtn">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Lab Test Request -->
+    <div class="modal fade" id="labRequestModal" tabindex="-1" aria-labelledby="labRequestModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="labRequestModalLabel">Available Lab Tests</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Patient Visit ID: <span id="patientVisitId"></span></p>
+                    <form method="post">
+
+                        {% csrf_token %}
+                        <input type="hidden" id="patientVisitId" name="patient_visit" value="">
+                        <input type="hidden" id="selectedLabTests" name="selected_lab_tests" value="">
+                        {% for lab_test in lab_tests %}
+                            <div class="form-check">
+                                <input class="form-check-input lab-test-checkbox" type="checkbox"
+                                       id="labTest{{ lab_test.id }}"
+                                       name="lab_tests" value="{{ lab_test.id }}">
+                                <label class="form-check-label" for="labTest{{ lab_test.id }}">
+                                    <h5>{{ lab_test }}</h5>
+                                </label>
+
+                            </div>
+                            {% empty %}
+                            <p>No lab tests available.</p>
+                        {% endfor %}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitLabRequestBtn">Submit Lab Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#requestLabTestBtn').click(function () {
+                // Trigger the modal to show
+                var patientVisitId = $(this).data('patient-visit-id');
+                $('#patientVisitId').val(patientVisitId);
+                $('#labRequestModal').modal('show');
+            });
+
+            $('#submitLabRequestBtn').click(function () {
+                // Create an empty array to store selected lab test IDs
+                var selectedLabTests = [];
+
+
+                // Loop through all checkboxes with the class "lab-test-checkbox"
+                $('.lab-test-checkbox:checked').each(function () {
+                    // Get the value (lab test ID) of each selected checkbox
+                    selectedLabTests.push($(this).val());
+                });
+
+                // Convert the array to a JSON string to pass as a POST parameter
+                var selectedLabTestsJSON = JSON.stringify(selectedLabTests);
+                console.log('selectedLabTestsJSON is, ' + selectedLabTestsJSON)
+
+                var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
+                console.log('token is, ' + csrfToken)
+                var patientVisitId = $('#patientVisitId').val();
+                console.log("patientVisitId is," + patientVisitId)
+                // Set the value of the hidden input field
+                $('#selectedLabTests').val(selectedLabTestsJSON);
+
+                // Submit the form using AJAX to a Django view
+                var baseUrl = window.location.origin;
+                $.ajax({
+                    type: 'POST',
+                    url: baseUrl + '/physician/lab_request/',
+                    data: {
+                        selected_lab_tests: selectedLabTestsJSON,
+                        csrfmiddlewaretoken: csrfToken,
+                        patient_visit_id: patientVisitId,
+                    },
+                    success: function (response) {
+
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        // Handle any errors (if needed)
+                        console.log(error);
+                    }
+                });
+
+                // Close the modal
+                $('#labRequestModal').modal('hide');
+
+
+            });
+
+            $('#showConfirmationModalBtn').click(function () {
+                console.log('lol pressed')
+                $('#confirmationModal').modal('show');
+            });
+
+            // Handle the form submission when "Yes" is clicked in the confirmation modal
+            $('#submitObservationBtn').click(function () {
+                $('#observationForm').submit();  // Submit the form
+            });
+        });
+    </script>
+
+{% endblock %}

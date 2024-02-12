@@ -1,0 +1,143 @@
+{% extends "opd/record_manager_base.html" %}
+{% load static %}
+{% block title %}
+    Edit Patient
+{% endblock %}
+{% block record_base %}
+    {% load crispy_forms_tags %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-10">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> Please correct the following issues:
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                    <li>{{ field|capfirst }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <form method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-center">Personal Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.first_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.last_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.index_or_staff_id|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.phone_number|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.date_of_birth|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.email|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.place_of_birth|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.occupation|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.tribe|as_crispy_field }}
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form.residential_address|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form.business_address|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.religion|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.sex|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.patient_type|as_crispy_field }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form.race|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form.marital_status|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Contact Information Section -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-center">Other Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ form.phone_number_of_next_of_kin|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.next_of_kin|as_crispy_field }}
+                                    </div>
+                                    {#                                    <div class="col-md-4">#}
+                                    {#                                    {{ form.address_next_of_kin|as_crispy_field }}#}
+                                    {#                                </div>#}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ form.address_next_of_kin|as_crispy_field }}
+                                    </div>
+
+                                    {#                                    <div class="col-md-4">#}
+                                    {#                                    {{ form.address_next_of_kin|as_crispy_field }}#}
+                                    {#                                </div>#}
+                                </div>
+
+                                {#                                    <div class="col-md-4">#}
+                                {#                                        <div class="form-group">#}
+                                {#                                            <label for="business_address">Business Address</label>#}
+                                {#                                            <input type="text" class="form-control" name="business_address"#}
+                                {#                                                   id="business_address">#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+
+                            </div>
+                        </div>
+                        {#                        {{ form|crispy }}#}
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

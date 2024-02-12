@@ -1,0 +1,56 @@
+{% load static %}
+
+<link href="{% static 'css/navbar.css'%}" rel="stylesheet">
+{# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">#}
+<nav class="navbar  navbar-expand-lg bg-custom">
+  <a class="navbar-brand logo" href="#">
+    <img src="{% static 'images/logo.png'  %}" width="50" height="50" alt="">
+      <h4>ATU hyperX</h4>
+  </a>
+
+{#     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"#}
+{#        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
+{#        <span class="navbar-toggler-icon"></span>#}
+{#    </button>#}
+{#     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"#}
+{#        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
+{#        <span class="navbar-toggler-icon"></span>#}
+{#    </button>#}
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Welcome, {{ user.username }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="javascript:{document.getElementById('logout').submit()}">
+                       <i class="fas fa-sign-in-alt"></i>
+                        Logout
+
+                    </a>
+                <form action="{% url 'logout' %}" id="logout" method="post">
+                {%csrf_token%}
+                <input type="hidden">
+
+              </form>
+                </li>
+                 {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">
+                            <button class='btn'>Register User</button>
+                        </a>
+                    </li>
+                {% endif %}
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">
+                    <button class='btn'>Login</button>
+                        </a>
+                </li>
+
+            {% endif %}
+        </ul>
+    </div>
+</nav>

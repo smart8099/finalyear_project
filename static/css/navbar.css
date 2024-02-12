@@ -1,0 +1,29 @@
+.logo{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo h4{
+  width: 60px;
+  line-height: 18px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btns{
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+.btn{
+  padding: 6px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  background-color: #E5AE1F;
+  color: white;
+}

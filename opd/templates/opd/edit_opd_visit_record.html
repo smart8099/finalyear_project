@@ -1,0 +1,91 @@
+{% extends "opd/opd_base.html" %}
+{% load static %}
+{% block title %}
+    Edit OPD Visit Record
+{% endblock %}
+{% block opd_content %}
+    {% load crispy_forms_tags %}
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center">Edit OPD Visit</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> Please correct the following issues:
+                                <ul>
+                                    {% for field, error_list in form.errors.items %}
+                                        {% for error in error_list %}
+                                            <li>{{ field|capfirst }}: {{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <form method="post" class="form-horizontal">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.patient_id|as_crispy_field }}
+                                <div id="patient-id-error" class="text-danger"></div>
+                                <div id="patient-id-success" class="text-success"></div>
+                            </div>
+                            {{ form.temperature|as_crispy_field }}
+                            {{ form.pulse_rate|as_crispy_field }}
+                            {{ form.blood_pressure|as_crispy_field }}
+                            {{ form.weight|as_crispy_field }}
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#id_blood_pressure').on('blur', function () {
+                var input = $(this).val();
+                var pattern = /^\d{2,3}\/\d{2,3}$/;
+
+                if (!pattern.test(input)) {
+                    alert('Please enter blood pressure in the format: XXX/XX');
+                }
+            });
+
+            $('#id_patient_id').on('blur', function () {
+                var input = $(this).val();
+                var baseUrl = window.location.origin;
+                var checkPatientUrl = baseUrl + '/opd/check_patient_existence/' + input + '/';
+                var patientIdInput = $('#id_patient_id');
+
+                // Make an AJAX call to check if the patient exists
+                $.ajax({
+                    url: checkPatientUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.exists) {
+                            // Patient exists
+                            // Apply green border and show checkmark icon
+                            patientIdInput.removeClass('text-danger-border');
+                            patientIdInput.addClass('text-success-border');
+                            $('#patient-id-success').text('Patient ID exist'); // Clear any existing error message
+
+                        } else {
+                            patientIdInput.removeClass('text-success-border');
+                            patientIdInput.addClass('text-danger-border');
+                            $('#patient-id-error').text('Patient ID does not exist');
+                        }
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

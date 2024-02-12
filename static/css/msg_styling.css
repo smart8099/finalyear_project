@@ -1,0 +1,40 @@
+/*!* Styles for success message *!*/
+/*.success {*/
+/*    color: #4CAF50;*/
+/*    background-color: #DFF0D8;*/
+/*}*/
+
+/*!* Styles for error message *!*/
+/*.error {*/
+/*    color: #D9534F;*/
+/*    background-color: #F2DEDE;*/
+/*}*/
+
+/*!* Styles for info message *!*/
+/*.info {*/
+/*    color: #5BC0DE;*/
+/*    background-color: #D9EDF7;*/
+/*}*/
+
+/*!* Styles for warning message *!*/
+/*.warning {*/
+/*    color: #F0AD4E;*/
+/*    background-color: #FCF8E3;*/
+/*}*/
+
+/*!* Additional styles for messages container *!*/
+/*.messages {*/
+/*    margin: 10px 0;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 4px;*/
+/*}*/
+
+/*.messages ul {*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.messages li {*/
+/*    margin-bottom: 5px;*/
+/*}*/

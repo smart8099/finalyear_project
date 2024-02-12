@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+Register Clinic User
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4" style="margin-top: 180px;">
+            <div class="card">
+
+                <div class="card-body bg-custom">
+                    <div class="note-card">
+                        <h3>Note:</h3>
+                        <p><div class='circle'></div>Only clinic admin can create accounts.</p>
+                        <p><div class='circle circle2'> </div>Admin users can create accounts for POD, Physician, Lab, Pharmacist.</p>
+                        <p><div class='circle'>  </div>Contact Admin user if you need a new account.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-4">
+
+                    <h2 class="text-center">Register User</h2>
+
+                <div class="card-body">
+                    <div class="center-content"> <!-- Center the content -->
+                         {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> Please correct the following issues:
+                    <ul>
+                        {% for field, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                        <li>{{ field|capfirst }}: {{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                     {% endif %}
+                        <form method="post" class="register-form" action="{% url 'register' %}">
+                            {% csrf_token %}
+                            {{  form|crispy}}
+
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

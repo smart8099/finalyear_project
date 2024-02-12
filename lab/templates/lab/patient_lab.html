@@ -1,0 +1,41 @@
+{% extends "lab/lab_base.html" %}
+{% load static %}
+{% block title %}
+    Lab Request
+{% endblock %}
+{% block app_navigation %}
+  {% include "lab/sidenav.html" %}  {# Include navigation for app2 #}
+{% endblock app_navigation %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <h2 class="text-center">Lab Request</h2>
+
+    <!-- Display lab request information -->
+    <h3>Lab Request Information:</h3>
+    <p>Patient ID: {{ lab_request.patient.patient_clinic_id }}</p>
+    <p>Date/Time Requested : {{ lab_request.created }}</p>
+
+    <!-- Display the names of selected lab tests -->
+    <h3>Physician Requested Lab Tests:</h3>
+    <ul>
+        {% for lab_test in selected_lab_tests %}
+            <li>{{ lab_test.lab_test_name }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Create a form for lab test results -->
+<form method="post" action="{% url 'submit_lab_results' %}">
+    {% csrf_token %}
+    <input type="hidden" name="lab_request_id" value="{{ lab_request.id }}">
+    <input type="hidden" name="opd_visit_id" value="{{ lab_request.opd_visit.id}}">
+    {% for lab_test in selected_lab_tests %}
+        <div class="form-group">
+            <label for="lab_test_{{ lab_test.id }}">{{ lab_test.lab_test_name }}</label>
+            <input type="text" class="form-control" id="lab_test_{{ lab_test.id }}"
+                   name="lab_test_results_{{ lab_test.id }}">
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit Lab Results</button>
+</form>
+
+{% endblock %}

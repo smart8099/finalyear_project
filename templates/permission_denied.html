@@ -1,0 +1,44 @@
+<!-- permission_denied.html -->
+{%load static %}
+{% include 'base.html' %}
+{% block title %}
+    Permission Denied
+{% endblock %}
+{%block content%}
+{#    <style>#}
+{#        /* Center the content vertically and horizontally */#}
+{#        body {#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            min-height: 100vh;#}
+{#            margin: 0;#}
+{#            background-color: #f8f9fa;#}
+{#        }#}
+{##}
+{#        /* Style the permission denied message */#}
+{#        .permission-denied-message {#}
+{#            text-align: center;#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        /* Style the FontAwesome icon */#}
+{#        .icon {#}
+{#            font-size: 100px;#}
+{#            color: #dc3545; /* Red color, you can customize */#}
+{#        }#}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 permission-denied-message">
+                <!-- Add your FontAwesome icon here -->
+                <i class="fas fa-exclamation-circle icon"></i>
+                <h1>Permission Denied</h1>
+                <p>You do not have permission to access this page.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

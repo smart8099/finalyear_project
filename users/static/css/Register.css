@@ -1,0 +1,148 @@
+.register{
+    display: flex;
+    gap: 120px;
+    padding: 20px 120px;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+.noteCard{
+    padding: 50px 30px;
+    border-radius: 5px;
+    background: #03478d;
+    color: white;
+    margin-top: 20px;
+    /* width: 470px; */
+    /* height: 465px; */
+}
+
+.noteCard h3{
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+
+.noteCard p{
+    width: 350px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items:first baseline
+}
+
+
+
+.circle{
+    background: #e5ae1f;
+    padding: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    /* position: absolute; */
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.circle2{
+    width: 8px;
+}
+
+.registerForm h3{
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.firstname, .lastname, .reg-email, .staffID, .phoneNumber{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.firstname >input, .lastname >input, .reg-email > input, .staffID > input, .phoneNumber > input {
+    width: 450px;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 1.5px solid #03478D;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 5px;
+}
+.firstname >label, .lastname >label, .reg-email > label, .staffID > label, .phoneNumber > label 
+.checkboxes{
+   margin-bottom: -2px;
+}
+
+.checkboxes{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.OPD, .physician, .pharmacy, .lab, .others{
+    display: flex;
+ 
+}
+
+.OPD > input, .physician > input, .pharmacy > input, .lab > input, .others > input{
+    margin-right: 3px;
+    margin-top: -15px;
+}
+
+ button{
+    width: 100%;
+    background-color: #03478D;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+
+}
+@media only screen and (max-width: 1024px){
+    .firstname >input, .lastname >input, .reg-email > input, .staffID > input, .phoneNumber > input{
+        width: 300px;;
+    }
+    .checkboxes{
+        flex-wrap: wrap;
+        width: 300px;
+        justify-content: center;
+    }
+}
+@media only screen and (max-width: 768px){
+    .register{
+        flex-direction: column;
+        margin-bottom: 40px;
+        gap: 50px;
+    }
+}
+
+@media only screen and (max-width: 425px){
+.register{
+    padding: 20px;
+}
+.firstname >input, .lastname >input, .reg-email > input, .staffID > input, .phoneNumber > input{
+    width: 300px;;
+}
+.noteCard p{
+    width: 300px;
+}
+.registerNote h2{
+    text-align: center;
+}
+.checkboxes{
+    flex-wrap: wrap;
+    width: 300px;
+    justify-content: center;
+}
+}
+
+@media only screen and (max-width: 425px){
+    .noteCard{
+        padding: 20px;
+    }
+    .noteCard h3{
+        margin-top: 10px;
+    }
+}

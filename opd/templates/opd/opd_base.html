@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    OPD
+{% endblock %}
+{% block content %}
+<div class="mt-3"> <!-- Add margin-top here to create distance from navbar -->
+    <ul class="nav nav-tabs custom-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'add_opd_visit' %}  active {% endif %}" href="{% url 'add_opd_visit' %}">Add OPD Visit</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'opd_visit_list' %}  active {% endif %}" href="{% url 'opd_visit_list' %}">Recent OPD Visits</a>
+        </li>
+    </ul>
+
+
+    <!-- Content Area -->
+    <div class="container">
+        {% block opd_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

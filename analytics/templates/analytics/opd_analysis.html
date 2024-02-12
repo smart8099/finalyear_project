@@ -1,0 +1,322 @@
+{% extends "analytics/base.html" %}
+{% load static %}
+{% block title %}
+    OPD Visits List
+{% endblock %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="header bg-custom pb-6">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-center py-4">
+                    <div class="col-lg-6 col-7">
+                        <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">OPD Visits</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Default</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    {#                    <div class="col-lg-6 col-5 text-right">#}
+                    {#                        <a href="#" class="btn btn-sm btn-neutral">New</a>#}
+                    {#                        <a href="#" class="btn btn-sm btn-neutral">Filters</a>#}
+                    {#                    </div>#}
+                </div>
+                <!-- Card stats -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">
+                                            Daily Count</h5>
+                                        <span class="h2 font-weight-bold mb-0">350,897</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">
+                                            Weekly Count</h5>
+                                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">
+                                            Monthly </h5>
+                                        <span class="h2 font-weight-bold mb-0">924</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card card-stats">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">
+                                            Yearly Count</h5>
+                                        <span class="h2 font-weight-bold mb-0">200</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <i class="fa-solid fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <h2>Recent OPD Visits</h2>
+        <!-- Search box and button -->
+
+        <div class="form-group">
+            <form method="GET" action="{% url 'admin_search_opd_visit' %}" class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search-term" name="search-term"
+                               placeholder="Search by patient ID/name/index_staff_id/phone"
+                               value="{{ search_term }}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-block" id="search-button" type="submit">
+
+                        <i class="fas fa-search">search</i>
+                        {#                <i class="fa-solid fa-magnifying-glass"></i>#}
+                    </button>
+                </div>
+            </form>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Patient ID</th>
+                <th>Temperature</th>
+                <th>Pulse Rate</th>
+                <th>Blood Pressure</th>
+                <th>Weight</th>
+                <th>Visit Date/Time</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for patient in opd_visits %}
+                <tr>
+                    <td>{{ patient.patient.patient_clinic_id }}</td>
+
+                    <td>{{ patient.temperature }}</td>
+                    <td>{{ patient.pulse_rate }}</td>
+                    <td>{{ patient.blood_pressure }}</td>
+                    <td>{{ patient.weight }}</td>
+                    <td>{{ patient.created }}</td>
+                    <td>
+                        <a class="btn btn-primary view-opd_visit-btn"
+                           data-patient-id="{{ patient.patient.id }}">View</a>
+                        <a class="btn btn-primary delete-patient-btn" data-patient-id="{{ patient.id }}">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No visits record found.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for viewing patient data -->
+    <div class="modal fade" id="viewPatientModal" tabindex="-1" aria-labelledby="viewPatientModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 100%;">
+                        <h5 class="modal-title" id="viewPatientModalLabel">View Patient Details</h5>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Delete Confirmation -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to delete this patient?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form id="deletePatientForm" method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="patient_id" id="deletePatientId" value="">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#{% endblock %}#}
+    <script>
+        $(document).ready(function () {
+            function formatDate(date) {
+                var year = date.getFullYear();
+                var month = (date.getMonth() + 1).toString().padStart(2, '0');
+                var day = date.getDate().toString().padStart(2, '0');
+                var hours = date.getHours().toString().padStart(2, '0');
+                var minutes = date.getMinutes().toString().padStart(2, '0');
+                var seconds = date.getSeconds().toString().padStart(2, '0');
+
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            }
+
+            $('.view-opd_visit-btn').click(function () {
+                var patientId = $(this).data('patient-id');
+                console.log('patient id ', patientId)
+                var baseUrl = window.location.origin;
+                var fetchPatient = baseUrl + '/opd/fetch_patient_data/' + patientId + '/'
+                $.ajax({
+                    url: fetchPatient,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+
+                        console.log(response)
+                        console.log(typeof response)
+                        var patientData = response.patient
+
+
+                        // Build a table to display patient data
+                        var tableHtml = '<table class="table table-striped">';
+                        for (var key in patientData) {
+                            if (patientData.hasOwnProperty(key)) {
+                                tableHtml += '<tr>';
+                                tableHtml += '<th>' + key + '</th>';
+                                if (key === 'Date Registered' || key === 'Last Modified') {
+                                    // Check if the key is a date field
+                                    var date = new Date(patientData[key]);
+                                    var formattedDate = formatDate(date); // Format the date
+                                    tableHtml += '<td>' + formattedDate + '</td>';
+                                } else {
+                                    tableHtml += '<td>' + patientData[key] + '</td>';
+                                }
+                                tableHtml += '</tr>';
+                            }
+                        }
+                        tableHtml += '</table>';
+
+                        // Fill in the patient data in the modal
+                        $('#viewPatientModal .modal-body').html(tableHtml);
+
+                        // Show the modal
+                        $('#viewPatientModal').modal('show');
+                        {#alert('Patient Data: ' + JSON.stringify(response));#}
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+
+                $('#viewPatientModal .modal-footer button').click(function () {
+                    // Close the modal
+                    $('#viewPatientModal').modal('hide');
+                });
+
+                $('#viewPatientModal .modal-header button.close').click(function () {
+                    // Close the modal
+                    $('#viewPatientModal').modal('hide');
+                });
+
+
+            });
+
+             $('.delete-patient-btn').click(function () {
+                    console.log('btn clicked')
+                    var patientId = $(this).data('patient-id');
+
+                    // Set the patient ID for deletion
+                    $('#deletePatientId').val(patientId);
+                    var formAction = "{% url 'delete_opd_visit' 0 %}".replace('0', patientId);
+                    $('#deletePatientForm').attr('action', formAction);
+
+                    // Show the confirmation modal
+                    $('#deleteConfirmationModal').modal('show');
+                });
+
+        });
+
+
+
+        function showDeleteConfirmationModal() {
+            $('#deleteConfirmationModal').modal('show');
+        }
+    </script>
+{% endblock %}

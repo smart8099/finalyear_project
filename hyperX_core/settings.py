@@ -136,12 +136,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = "users.User"
-import environ
+import os, environ
 
 env = environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DEFAULT_PASSWORD_FOR_NEWLY_REGISTERED_USERS = env("DEFAULT_PASSWORD_FOR_NEWLY_REGISTERED_USERS")
+
+
 
 from django.contrib.messages import constants as messages
 
